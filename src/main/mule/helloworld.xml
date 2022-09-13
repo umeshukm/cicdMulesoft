@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f413fa88-5b48-49b2-abbb-63d02251b6a7" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="helloworldFlow" doc:id="3b19da3b-48dc-4b0e-83de-b2255cc1d1b2" >
+		<http:listener doc:name="Listener" doc:id="a0263f6d-271d-4969-8715-f79ab1cce1c4" config-ref="HTTP_Listener_config" path="/cicd_test"/>
+		<set-payload value='#["Welcome to CI/CD demo!!!!"]' doc:name="Set Payload" doc:id="b21c6307-e42a-4c42-b4fa-de58a6426a46" />
+		<logger level="INFO" doc:name="Logger" doc:id="85d9b451-862b-4e6f-9bda-89f012e7835c" message='#["Payload consist of : " ++ payload]'/>
+	</flow>
+</mule>
